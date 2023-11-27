@@ -1,0 +1,6 @@
+/BackEnd/node_modules
+/FontEnd/node_modules
+/vendor
+/.idea
+.idea/
+.env
