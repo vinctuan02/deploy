@@ -1,6 +1,6 @@
 import db from "../models"
 require('dotenv').config()
-import _, { some } from 'lodash'
+import _, { reject, some } from 'lodash'
 
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE || 10
 
@@ -316,13 +316,56 @@ let getScheduleByDate = (doctorId, date) => {
     })
 }
 
+let getExtraInforDoctorById = (inputId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!inputId) {
+                resolve({
+                    errCode: -1,
+                    errMessage: 'Missing required parameter !'
+                })
+            } else {
+                let data = await db.Doctor_Infor.findOne({
+                    where: {
+                        doctorId: inputId
+                    },
+                    attributes: {
+                        exclude: ['id', 'doctorId']
+                    },
+                    include: [
+                        { model: db.Allcode, as: 'priceData', attributes: ['valueVi', 'valueEn'] },
+                        { model: db.Allcode, as: 'provinceData', attributes: ['valueVi', 'valueEn'] },
+                        { model: db.Allcode, as: 'paymentData', attributes: ['valueVi', 'valueEn'] }
+                    ],
+                    raw: true,
+                    nest: true
+                })
+
+                if (data && data.image) {
+                    data.image = new Buffer(data.image, 'base64').toString('binary')
+                }
+
+                if (!data) data = {}
+                resolve({
+                    errCode: 0,
+                    data: data
+                })
+            }
+        } catch (e) {
+            console.log(e)
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     getTopDoctorHomeService,
     getAllDoctors,
     saveInforDoctor: saveInforDoctor,
     getDetailDoctorById: getDetailDoctorById,
     bulkCreateSchedule: bulkCreateSchedule,
-    getScheduleByDate: getScheduleByDate
+    getScheduleByDate: getScheduleByDate,
+    getExtraInforDoctorById: getExtraInforDoctorById
 }
 
 

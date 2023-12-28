@@ -7,6 +7,7 @@ let router = express.Router()
 
 let initWebRouter = (app) => {
     router.get('/', homeController.getHomePage)
+    router.get('/helloworld', homeController.helloWorld)
     router.get('/crud', homeController.getCRUD) //CREATE
 
     router.post('/post-crud', homeController.postCRUD)
@@ -34,6 +35,9 @@ let initWebRouter = (app) => {
     router.post('/api/bulk-create-schedule', doctorControler.bulkCreateSchedule)
 
     router.get('/api/get-schedule-doctor-by-date', doctorControler.getScheduleByDate)
+
+    router.get('/api/get-extra-infor-doctor-by-id', doctorControler.getExtraInforDoctorById)
+
 
 
     return app.use('/', router)

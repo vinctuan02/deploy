@@ -6,7 +6,7 @@ import localization from 'moment/locale/vi'
 import { LANGUAGES } from '../../../utils/constant';
 import { getScheduleDoctorByDate } from '../../../services/userService';
 
-class DetailDoctor extends Component {
+class DoctorSchedule extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,8 +18,8 @@ class DetailDoctor extends Component {
     async componentDidMount() {
         let { language } = this.props
         let allDays = this.getArrDays(language)
-        console.log("this.props: ", this.props)
-        console.log('this.props.doctorid: ', this.props.doctorId)
+        // console.log("this.props: ", this.props)
+        // console.log('this.props.doctorid: ', this.props.doctorId)
         if (allDays && allDays.length > 0) {
             let res = await getScheduleDoctorByDate(this.props.doctorId, allDays[0].value)
             this.setState({
@@ -29,12 +29,24 @@ class DetailDoctor extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    async componentDidUpdate(prevProps, prevState) {
         if (this.props.language !== prevProps.language) {
             let allDays = this.getArrDays(this.props.language)
             this.setState({
                 allDays: allDays
             })
+        }
+        
+        let { language } = this.props
+        let allDays = this.getArrDays(language)
+        if (this.props.doctorId !== prevProps.doctorId) {
+            if (allDays && allDays.length > 0) {
+                let res = await getScheduleDoctorByDate(this.props.doctorId, allDays[0].value)
+                this.setState({
+                    allDays: allDays,
+                    allAvailableTime: res.data ? res.data : []
+                })
+            }
         }
     };
 
@@ -55,7 +67,7 @@ class DetailDoctor extends Component {
     }
 
     handleOnChangeSelect = async (event) => {
-        console.log("event.target: ", event.target.value)
+        // console.log("event.target: ", event.target.value)
         if (this.props.doctorId && this.props.doctorId !== -1) {
             let doctorId = this.props.doctorId
             let date = event.target.value
@@ -132,4 +144,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailDoctor);
+export default connect(mapStateToProps, mapDispatchToProps)(DoctorSchedule);

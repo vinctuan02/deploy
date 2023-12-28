@@ -1,6 +1,16 @@
 import db from "../models";
 import CRUDService from "../services/CRUDService";
 
+let helloWorld = async (req, res) => {
+    try {
+        console.log("hihi")
+        let data = await db.User.findAll();
+        return res.send("hi")
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 let getHomePage = async (req, res) => {
     try {
         let data = await db.User.findAll();
@@ -63,6 +73,7 @@ let deleteCRUD = async (req, res) => {
 }
 
 module.exports = {
+    helloWorld: helloWorld,
     getHomePage: getHomePage,
     getCRUD: getCRUD,
     postCRUD: postCRUD,

@@ -169,8 +169,10 @@ class ManageDoctor extends Component {
     }
 
     handleChangeSelect = async (selectedDoctor) => {
-        // console.log("hihihi")
+        // console.log("list state: ", this.state)
         this.setState({ selectedDoctor });
+        let { listPayment, listPrice, listProvince } = this.state
+
         let res = await getDetailInforDoctor(selectedDoctor.value)
         // console.log("test res: ", res)
         if (res && res.errCode === 0 && res.data && res.data.Markdown &&
@@ -179,15 +181,35 @@ class ManageDoctor extends Component {
 
             let markdown = res.data.Markdown
 
-            // let addressClinic = '', nameClinic = '', note = ''
-            // if(res.data.Doctor_Infor){
-            //     addressClinic = res.data.Doctor_Infor.addressClinic
-            //     nameClinic = res.data.Doctor_Infor.nameClinic
-            //     note = res.data.Doctor_Infor.note
+            let addressClinic = '', nameClinic = '', note = '',
+                paymentId = '', priceId = '', provinceId = '',
+                selectedPayment = '', selectedPrice = '', selectedProvince = ''
+            if (res.data.Doctor_Infor) {
+                addressClinic = res.data.Doctor_Infor.addressClinic
+                nameClinic = res.data.Doctor_Infor.nameClinic
+                note = res.data.Doctor_Infor.note
 
-            // }
+                paymentId = res.data.Doctor_Infor.paymentId
+                selectedPayment = listPayment.find(item => {
+                    return item && item.value === paymentId
+                })
 
-            let Doctor_Infor = res.data.Doctor_Infor
+                priceId = res.data.Doctor_Infor.priceId
+                selectedPrice = listPrice.find(item => {
+                    return item && item.value === priceId
+                })
+
+                provinceId = res.data.Doctor_Infor.provinceId
+                selectedProvince = listProvince.find(item => {
+                    return item && item.value === provinceId
+                })
+
+                // console.log("price :", priceId, listPrice)
+                // console.log("payment :", paymentId, listPayment)
+                // console.log("province :", provinceId, listProvince)
+            }
+
+            // let Doctor_Infor = res.data.Doctor_Infor
             // console.log("Test: ", Doctor_Infor)
             // console.log("List price: ", this.state.listPrice)
 
@@ -197,12 +219,12 @@ class ManageDoctor extends Component {
                 description: markdown.description,
                 hasOldData: true,
 
-                selectedPrice: '',
-                selectedPayment: '',
-                selectedProvince: '',
-                nameClinic: Doctor_Infor.nameClinic,
-                addressClinic: Doctor_Infor.addressClinic,
-                note: Doctor_Infor.note
+                selectedPrice: selectedPrice,
+                selectedPayment: selectedPayment,
+                selectedProvince: selectedProvince,
+                nameClinic: nameClinic,
+                addressClinic: addressClinic,
+                note: note,
             })
         } else {
             this.setState({
