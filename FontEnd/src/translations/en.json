@@ -64,5 +64,32 @@
         "choose-doctor": "Choose doctor",
         "choose-date": "Choose date",
         "save": "Save"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule"
+        },
+        "extra-infor-doctor": {
+            "text-address": "Address of examination",
+            "price": "Examination price",
+            "detail": "See detail",
+            "payment": "Users can pay in the form of:",
+            "hide-price": "Hide price"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Information management of doctors",
+            "select-doctor": "Chose doctor",
+            "intro": "Information",
+            "price": "Price",
+            "payment": "Payment",
+            "province": "Province",
+            "nameClinic": "Name clinic",
+            "addressClinic": "Address Clinic",
+            "add": "Add",
+            "save": "Save",
+            "note": "Note"
+        }
     }
 }

@@ -141,8 +141,8 @@ class ManageSchedule extends Component {
                 toast.error("Invalid selected time ! ")
                 return
             }
-            // console.log("selectedTime: ", selectedTime)
         }
+        console.log("result: ", result)
 
         let res = await saveBulkScheduleDoctor({
             arrSchedule: result

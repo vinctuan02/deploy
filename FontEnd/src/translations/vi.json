@@ -35,7 +35,7 @@
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang"
         },
-        "doctor":{
+        "doctor": {
             "manage-schedule": "Quản lý lịch khám bệnh"
         }
     },
@@ -54,19 +54,42 @@
         "save": "Lưu user",
         "edit": "Lưu thay đổi"
     },
-
-    "homepage":{
+    "homepage": {
         "oustanding-doctor": "Bác sĩ nổi bật tuần qua",
         "more-infor": "Xem Thêm"
     },
-
     "manage-schedule": {
-        "options":"Tuỳ chọn",
+        "options": "Tuỳ chọn",
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày",
         "save": "Lưu thông tin"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Lịch khám"
+        },
+        "extra-infor-doctor": {
+            "text-address": "Địa chỉ khám",
+            "price": "Giá khám",
+            "detail": "Chi tiết",
+            "payment": "Người dùng có thể thanh toán bằng phương thức:",
+            "hide-price": "Ẩn bớt"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Tạo thêm thông tin bác sĩ",
+            "select-doctor": "Chọn bác sĩ",
+            "intro": "Thông tin giới thiệu",
+            "price": "Giá khám bệnh",
+            "payment": "Phương thức thanh toán",
+            "province": "Tỉnh thành",
+            "nameClinic": "Tên phòng khám",
+            "addressClinic": "Địa chỉ phòng khám",
+            "add": "Tạo thông tin",
+            "save": "Lưu thông tin",
+            "note": "Ghi chú"
+        }
     }
-
-
 }

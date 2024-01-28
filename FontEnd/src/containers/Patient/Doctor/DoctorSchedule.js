@@ -5,13 +5,16 @@ import moment from 'moment'
 import localization from 'moment/locale/vi'
 import { LANGUAGES } from '../../../utils/constant';
 import { getScheduleDoctorByDate } from '../../../services/userService';
+import BookingModal from './Modal/BookingModal';
 
 class DoctorSchedule extends Component {
     constructor(props) {
         super(props)
         this.state = {
             allDays: [],
-            allAvailableTime: []
+            allAvailableTime: [],
+            isOpenModal: false,
+            dataTimeSchedule: {}
         }
     }
 
@@ -36,7 +39,7 @@ class DoctorSchedule extends Component {
                 allDays: allDays
             })
         }
-        
+
         let { language } = this.props
         let allDays = this.getArrDays(language)
         if (this.props.doctorId !== prevProps.doctorId) {
@@ -81,9 +84,25 @@ class DoctorSchedule extends Component {
         }
 
     }
+
+    handleClickScheduleTime = (time) => {
+        // console.log("time: ", time)
+        this.setState({
+            isOpenModal: true,
+            dataTimeSchedule: time
+        })
+    }
+
+    closeModalBooking = () => {
+        this.setState({
+            isOpenModal: false
+        })
+    }
+
     render() {
-        let { allDays, allAvailableTime } = this.state
+        let { allDays, allAvailableTime, isOpenModal, dataTimeSchedule } = this.state
         let { language } = this.props
+        // console.log("allAvailableTime: ", allAvailableTime)
         return (
             <React.Fragment>
                 <div className='doctor-schedule-container'>
@@ -109,12 +128,14 @@ class DoctorSchedule extends Component {
                             {
                                 allAvailableTime && allAvailableTime.length > 0 ?
                                     allAvailableTime.map((item, index) => {
-                                        let timeDisplay = language === LANGUAGES.VI ?
-                                            item.timeTypeData.valueVi : item.timeTypeData.valueEn
+                                        let timeDisplay =
+                                            language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn
                                         return (
                                             <button
-                                                className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'}
-                                                key={index}>{timeDisplay}
+                                                className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'} key={index}
+                                                onClick={() => this.handleClickScheduleTime(item)}
+                                            >
+                                                {timeDisplay}
                                             </button>
                                         )
                                     })
@@ -126,6 +147,11 @@ class DoctorSchedule extends Component {
                         </div>
                     </div>
                 </div>
+                <BookingModal
+                    isOpenModal={isOpenModal}
+                    closeModalBooking={this.closeModalBooking}
+                    dataTimeSchedule={dataTimeSchedule}
+                />
             </React.Fragment>
         );
     }
