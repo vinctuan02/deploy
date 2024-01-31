@@ -45,8 +45,14 @@
 
             .down {
                 padding-top: 10px;
+
                 // font-size: 15px;
                 // font-weight: 500;
+                .price {
+                    font-style: italic;
+                    // font-size: 15px;
+                    // color: #83c1ff;
+                }
             }
         }
     }

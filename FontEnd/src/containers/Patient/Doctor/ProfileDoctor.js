@@ -4,6 +4,9 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../utils/constant';
 import './ProfileDoctor.scss'
 import { getProfileDoctorById } from '../../../services/userService'
+import NumberFormat from 'react-number-format';
+import moment from 'moment'
+import _ from 'lodash';
 
 class DefaultClass extends Component {
     constructor(props) {
@@ -41,10 +44,37 @@ class DefaultClass extends Component {
         return result
     }
 
+    renderTimeBooking = (dataTime, language) => {
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let date = language === LANGUAGES.VI ?
+                moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY')
+                :
+                moment.unix(+dataTime.date / 1000).locale('en').format('ddd - MM/DD/YYYY')
+            let time = language === LANGUAGES.VI ? dataTime.timeTypeData.valueVi : dataTime.timeTypeData.valueEn
+            return (
+                <>
+
+                    {console.log("dataTime: ", dataTime)}
+                    <div>{time} / {date}</div>
+                </>
+            )
+        }
+    }
+
     render() {
         // console.log("this.state: ", this.state)
+        // console.log("this.props: ", this.props)
+
         let { dataProfile } = this.state
-        let { language } = this.props
+        // if (dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceData) {
+        //     console.log("dataProfile.Doctor_Infor.priceData: ", dataProfile.Doctor_Infor.priceData)
+        // }
+
+        // console.log("dataProfile.Doctor_Infor.priceData: ", dataProfile.Doctor_Infor.priceData.valueVi)
+        // console.log("dataProfile.Doctor_Infor.priceData: ", dataProfile.Doctor_Infor.priceData.valueEn)
+
+        let { language, isShowDescriptionDoctor, dataTimeSchedule } = this.props
+        // console.log("language: ", language)
 
         let nameVi = '', nameEn = ''
 
@@ -52,6 +82,7 @@ class DefaultClass extends Component {
             nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`
             nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`
         }
+
         return (
             <React.Fragment>
                 <div className='profile-doctor-container'>
@@ -69,12 +100,43 @@ class DefaultClass extends Component {
                                 }
                             </div>
                             <div className='down'>
-                                {dataProfile && dataProfile.Markdown &&
-                                    dataProfile.Markdown.description &&
-                                    <span>
-                                        {dataProfile.Markdown.description}
-                                    </span>
+                                {isShowDescriptionDoctor &&
+                                    <>
+                                        {dataProfile && dataProfile.Markdown &&
+                                            dataProfile.Markdown.description &&
+                                            <span>
+                                                {dataProfile.Markdown.description}
+                                            </span>
+                                        }
+                                    </>
                                 }
+
+                                {this.renderTimeBooking(dataTimeSchedule, language)}
+
+                                <div className='price'>
+                                    Giá khám:
+                                    {dataProfile && dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceData &&
+                                        <span>
+                                            {language === LANGUAGES.VI ?
+                                                <NumberFormat
+                                                    value={dataProfile.Doctor_Infor.priceData.valueVi}
+                                                    displayType={'text'}
+                                                    thousandSeparator={true}
+                                                    suffix={'VNĐ'}
+                                                    className='currency'
+                                                />
+                                                :
+                                                <NumberFormat
+                                                    value={dataProfile.Doctor_Infor.priceData.valueEn}
+                                                    displayType={'text'}
+                                                    thousandSeparator={true}
+                                                    suffix={'USD'}
+                                                    className='currency'
+                                                />
+                                            }
+                                        </span>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,6 +149,9 @@ class DefaultClass extends Component {
 
 const mapStateToProps = state => {
     return {
+        systemMenuPath: state.app.systemMenuPath,
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language,
     };
 };
 

@@ -25,7 +25,8 @@ class BookingModal extends Component {
 
     render() {
         let { isOpenModal, closeModalBooking, dataTimeSchedule } = this.props
-        // console.log("this.props: ", this.props)
+        // console.log("this.props bookingmodal: ", this.props)
+        // console.log("this.state bookingmodal: ", this.state)
         let doctorId = dataTimeSchedule && !_.isEmpty(dataTimeSchedule) ? dataTimeSchedule.doctorId : ''
         // console.log("doctorId: ", doctorId)
         return (
@@ -52,10 +53,9 @@ class BookingModal extends Component {
                                 <div className='doctor-infor'>
                                     <ProfileDoctor
                                         doctorId={doctorId}
+                                        isShowDescriptionDoctor={false}
+                                        dataTimeSchedule={dataTimeSchedule}
                                     />
-                                </div>
-                                <div className='price'>
-                                    Giá khám 500.000đ
                                 </div>
                                 <div className='row'>
                                     <div className='col-6 form-group'>
@@ -111,6 +111,9 @@ class BookingModal extends Component {
 
 const mapStateToProps = state => {
     return {
+        systemMenuPath: state.app.systemMenuPath,
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language,
     };
 };
 
