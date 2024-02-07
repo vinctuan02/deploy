@@ -53,8 +53,6 @@ class DefaultClass extends Component {
             let time = language === LANGUAGES.VI ? dataTime.timeTypeData.valueVi : dataTime.timeTypeData.valueEn
             return (
                 <>
-
-                    {console.log("dataTime: ", dataTime)}
                     <div>{time} / {date}</div>
                 </>
             )
@@ -86,7 +84,6 @@ class DefaultClass extends Component {
         return (
             <React.Fragment>
                 <div className='profile-doctor-container'>
-
                     <div className='intro-doctor'>
                         <div className='content-left'>
                             <div className='image-doctor'

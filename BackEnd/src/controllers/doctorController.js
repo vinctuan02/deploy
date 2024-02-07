@@ -64,7 +64,7 @@ let getDetailDoctorById = async (req, res) => {
 let bulkCreateSchedule = async (req, res) => {
     try {
         // console.log("hi")
-        console.log("req.body: ", req.body)
+        // console.log("req.body: ", req.body)
         let infor = await doctorService.bulkCreateSchedule(req.body)
         return res.status(200).json(infor)
     } catch (e) {
