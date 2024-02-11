@@ -2,8 +2,17 @@ const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
 
-let sendMail = async (language, emailSender, emailRecipient, namePatient, timeBooking, nameDoctor, link) => {
+let sendMail = async (data) => {
     // let sendMail = async (emailRecipient) => {
+
+    let language = data.language
+    let emailSender = 'vinctuan02@gmail.com'
+    let emailRecipient = data.email
+    let namePatient = data.fullName
+    let timeBooking = data.timeString
+    let reason = data.reason
+    let nameDoctor = "Chu Huy Hoang"
+    let link = 'hi'
 
     console.log("email is being sent")
     let transporter = nodemailer.createTransport({
@@ -26,7 +35,8 @@ let sendMail = async (language, emailSender, emailRecipient, namePatient, timeBo
             <h2>Xin chào ${namePatient}</h2>
             <p>Bạn đã đặt lịch khám online trên Bookingcare.com</p>
             <p>Thông tin đặt lịch khám bệnh</p>
-            <p><strong>${timeBooking}</strong></p>
+            <p><strong> Thời gian khám: ${timeBooking}</strong></p>
+            <p><strong>Lý do khám: ${reason}</strong></p>
             <p><strong>Bác Sĩ: ${nameDoctor}</strong></p>
             <p><em>Nếu các thông tin trên chính xác vui lòng click vào link bên dưới để xác nhận và hoàn tất thủ tục đặt lịch khám bệnh</em></p>
             <p>Click here</p>

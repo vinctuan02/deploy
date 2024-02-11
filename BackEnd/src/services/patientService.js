@@ -7,6 +7,8 @@ let postBookAppointment = (data) => {
     console.log("data: ", data)
     return new Promise(async (resolve, reject) => {
         try {
+
+            console.log("Data: ", data)
             if (!data.fullName || !data.phoneNumber ||
                 !data.email || !data.address || !data.doctorId ||
                 !data.date || !data.timeType || !data.selectedGender
@@ -17,15 +19,9 @@ let postBookAppointment = (data) => {
                     errMessage: 'Missing parameter'
                 })
             } else {
-                let language = data.language
-                let emailSender = 'vinctuan02@gmail.com'
-                let emailRecipient = data.email
-                let namePatient = data.fullName
-                let timeBooking = data.timeString
-                let nameDoctor = "Chu Huy Hoang"
-                let link = 'hi'
+                
 
-                emailService.sendMail(language, emailSender, emailRecipient, namePatient, timeBooking, nameDoctor, link)
+                emailService.sendMail(data)
 
                 //upsert patient
                 let user = await db.User.findOrCreate({
