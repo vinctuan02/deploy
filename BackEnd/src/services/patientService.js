@@ -2,9 +2,12 @@ import db from "../models"
 require('dotenv').config()
 // import { sendMail } from "./emailService"
 import emailService from './emailService'
+import doctorService from './doctorService'
+
+
 
 let postBookAppointment = (data) => {
-    console.log("data: ", data)
+    // console.log("data: ", data)
     return new Promise(async (resolve, reject) => {
         try {
 
@@ -19,9 +22,13 @@ let postBookAppointment = (data) => {
                     errMessage: 'Missing parameter'
                 })
             } else {
-                
 
+                // let data = await this.getInforDoctor(this.props.doctorId)
+                let inforDoctor = await doctorService.getDetailDoctorById(data.doctorId)
+                // console.log("Name doctor: ", inforDoctor.data.lastName + inforDoctor.data.firstName)
+                data.fullNameDoctor = inforDoctor.data.lastName + inforDoctor.data.firstName
                 emailService.sendMail(data)
+                console.log("Data: ", data)
 
                 //upsert patient
                 let user = await db.User.findOrCreate({

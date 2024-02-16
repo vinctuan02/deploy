@@ -11,7 +11,7 @@ let sendMail = async (data) => {
     let namePatient = data.fullName
     let timeBooking = data.timeString
     let reason = data.reason
-    let nameDoctor = "Chu Huy Hoang"
+    let nameDoctor = data.fullNameDoctor
     let link = 'hi'
 
     console.log("email is being sent")
