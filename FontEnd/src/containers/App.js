@@ -17,6 +17,7 @@ import HomePage from './HomePage/HomePage.js'
 import DetailDoctor from './Patient/Doctor/DetailDoctor';
 import Doctor from '../routes/Doctor';
 import UserReduxIsLoginFalse from './System/Admin/UserReduxIsLoginFalse';
+import VerifyEmail from './Patient/VerifyEmail.js';
 
 class App extends Component {
 
@@ -49,11 +50,12 @@ class App extends Component {
                                 <Switch>
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                                    <Route path={'/create-user'} component={userIsNotAuthenticated(UserReduxIsLoginFalse)} />
+                                    <Route path={path.CREATE_USER} component={userIsNotAuthenticated(UserReduxIsLoginFalse)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
-                                    <Route path={'/doctor/manage-schedule'} component={userIsAuthenticated(Doctor)} />
+                                    <Route path={path.MANAGE_SCHEDULE} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                                    <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
                                 </Switch>
                             </CustomScrollbars>
                         </div>

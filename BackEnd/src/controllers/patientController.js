@@ -14,8 +14,24 @@ let postBookAppointment = async (req, res) => {
     }
 }
 
+let postVerifyBookAppointment = async (req, res) => {
+    // console.log("req.body: ", req.body)
+    try {
+        // console.log("req.body: ", req.body)
+        let infor = await patientService.postVerifyBookAppointment(req.body)
+        return res.status(200).json(infor)
+    } catch (e) {
+        console.log(e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+}
+
 
 
 module.exports = {
-    postBookAppointment: postBookAppointment
+    postBookAppointment: postBookAppointment,
+    postVerifyBookAppointment: postVerifyBookAppointment
 }

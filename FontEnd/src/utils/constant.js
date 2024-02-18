@@ -3,8 +3,11 @@ export const path = {
     HOMEPAGE: '/home',
     LOGIN: '/login',
     LOG_OUT: '/logout',
+    CREATE_USER: '/create-user',
     SYSTEM: '/system',
-    DETAIL_DOCTOR: '/detail-doctor/:id'
+    MANAGE_SCHEDULE: '/doctor/manage-schedule',
+    DETAIL_DOCTOR: '/detail-doctor/:id',
+    VERIFY_EMAIL_BOOKING: '/verify-booking/'
 };
 
 export const LANGUAGES = {
@@ -18,8 +21,8 @@ export const CRUD_ACTION = {
     EDIT: 'EDIT',
     DELETE: 'DELETE',
 };
- 
- 
+
+
 export const manageActions = {
     ADD: "ADD",
     EDIT: "EDIT",

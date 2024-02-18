@@ -4,7 +4,7 @@ dotenv.config();
 
 let sendMail = async (data) => {
     // let sendMail = async (emailRecipient) => {
-
+    // console.log(process.env.REACT_APP_FONTEND_URL)
     let language = data.language
     let emailSender = 'vinctuan02@gmail.com'
     let emailRecipient = data.email
@@ -12,7 +12,7 @@ let sendMail = async (data) => {
     let timeBooking = data.timeString
     let reason = data.reason
     let nameDoctor = data.fullNameDoctor
-    let link = 'hi'
+    let linkdirect = data.linkdirect
 
     console.log("email is being sent")
     let transporter = nodemailer.createTransport({
@@ -39,7 +39,7 @@ let sendMail = async (data) => {
             <p><strong>Lý do khám: ${reason}</strong></p>
             <p><strong>Bác Sĩ: ${nameDoctor}</strong></p>
             <p><em>Nếu các thông tin trên chính xác vui lòng click vào link bên dưới để xác nhận và hoàn tất thủ tục đặt lịch khám bệnh</em></p>
-            <p>Click here</p>
+            <a href="${linkdirect}">Xác nhận lịch hẹn</a>
             <p>Xin chân thành cảm ơn.</p>   
         `
         };
@@ -59,8 +59,9 @@ let sendMail = async (data) => {
             <p>You have booked an online examination appointment on Bookingcare.com</p>
             <p>Information for scheduling medical examination</p>
             <p><strong>${timeBooking}</strong></p>
-            <p><strong>Bác Sĩ: ${nameDoctor}</strong></p>
+            <p><strong>Doctor: ${nameDoctor}</strong></p>
             <p><em>If the above information is correct, please click on the link below to confirm and complete the medical appointment procedure</em></p>            <p>Click here</p>
+            <a href="${linkdirect}">Confirm appointment</a>
             <p>Thanks.</p>   
         `
         }
