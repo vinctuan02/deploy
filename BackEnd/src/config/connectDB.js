@@ -1,11 +1,21 @@
+require('dotenv').config()
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('tuan123', 'root', null, {
-    host: 'localhost',
-    port: 3001,
-    dialect: 'mysql',
-    logging: false
-})
+// console.log("process.env.DB_HOST: ", process.env.DB_HOST)
+
+const sequelize = new Sequelize(
+    process.env.DB_DATABASE_NAME,
+    process.env.DB_USERNAME,
+    null,
+    {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: process.env.DB_DIALECT,
+        logging: false
+    }
+)
+
+
 
 let connectDB = async () => {
     try {
