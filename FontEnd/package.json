@@ -8,6 +8,7 @@
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "caniuse-lite": "^1.0.30001589",
     "connected-react-router": "^6.9.1",
     "lodash": "^4.17.21",
     "markdown-it": "^12.1.0",

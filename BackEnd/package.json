@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node src/server.js",
-    "build": "babel src -d build --copy-files"
+    "build-src": "babel src -d build --copy-files",
+    "build": "node build/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,13 +18,16 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "i": "^0.3.7",
     "lodash": "^4.17.21",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.6.3",
+    "npm": "^10.4.0",
     "uuid": "8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
+    "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.12.10",
     "nodemon": "^2.0.7",
     "sequelize": "^6.6.2",

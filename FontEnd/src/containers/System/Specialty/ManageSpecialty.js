@@ -29,7 +29,6 @@ class ManageSpecialty extends Component {
 
     };
 
-
     handleOnChangeInput = (event, id) => {
         let copyState = { ...this.state }
         console.log("copy state: ", copyState)
@@ -62,6 +61,20 @@ class ManageSpecialty extends Component {
     }
 
 
+    // handleOnchangeImage = async (event) => {
+    //     let data = event.target.files
+    //     let file = data[0]
+    //     if (file) {
+    //         let base64 = await CommonUtils.getBase64(file)
+    //         // console.log("test base64: ", base64)
+    //         let objectUrl = URL.createObjectURL(file)
+    //         this.setState({
+    //             previewImgULR: objectUrl,
+    //             avatar: base64
+    //         })
+    //     }
+    // }
+
     render() {
         console.log("this.state: ", this.state)
         return (
@@ -79,8 +92,7 @@ class ManageSpecialty extends Component {
                         </div>
                         <div className="col-6 form-group">
                             <label>Ảnh chuyên khoa</label>
-                            <
-                                input className="form-control-file" type="file"
+                            <input className="form-control-file" type="file"
                                 onChange={(event) => this.handleOnchangeImage(event)}
                             />
                         </div>
