@@ -4,7 +4,7 @@ dotenv.config();
 
 let sendMail = async (data) => {
     // let sendMail = async (emailRecipient) => {
-    // console.log(process.env.REACT_APP_FONTEND_URL)
+    // console.log(process.env.REACT_APP_FRONTEND_URL)
     let language = data.language
     let emailSender = 'vinctuan02@gmail.com'
     let emailRecipient = data.email

@@ -12,7 +12,7 @@ let postBookAppointment = (data) => {
         try {
 
             let buildUrl = (doctorId, token) => {
-                let result = `${process.env.REACT_APP_FONTEND_URL}/verify-booking?token=${token}&doctorId=${doctorId}`
+                let result = `${process.env.REACT_APP_FRONTEND_URL}/verify-booking?token=${token}&doctorId=${doctorId}`
                 return result
             }
 
