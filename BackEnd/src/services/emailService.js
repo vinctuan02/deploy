@@ -15,6 +15,9 @@ let sendMail = async (data) => {
     let linkdirect = data.linkdirect
 
     console.log("email is being sent")
+    console.log(process.env.EMAIL_APP)
+    console.log(process.env.PASSWORD_APP)
+
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 587,
@@ -23,6 +26,9 @@ let sendMail = async (data) => {
         auth: {
             user: process.env.EMAIL_APP,
             pass: process.env.PASSWORD_APP
+        },
+        tls: {
+            rejectUnauthorized: false
         }
     });
 
@@ -45,6 +51,7 @@ let sendMail = async (data) => {
         };
         await transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
+                console.log("error")
                 return console.log(error.message);
             }
             console.log('success');

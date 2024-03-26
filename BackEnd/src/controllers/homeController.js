@@ -4,7 +4,7 @@ import CRUDService from "../services/CRUDService";
 let helloWorld = async (req, res) => {
     try {
         console.log("hihi")
-        let data = await db.User.findAll();
+        // let data = await db.User.findAll();
         return res.send("hi")
     } catch (e) {
         console.log(e)

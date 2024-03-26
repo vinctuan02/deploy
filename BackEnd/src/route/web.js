@@ -8,6 +8,10 @@ import specialtyController from "../controllers/specialtyController"
 let router = express.Router()
 
 let initWebRouter = (app) => {
+
+    router.get('/api/testAPI', homeController.helloWorld)
+
+
     router.get('/', homeController.getHomePage)
     router.get('/helloworld', homeController.helloWorld)
     router.get('/crud', homeController.getCRUD) //CREATE
@@ -44,7 +48,7 @@ let initWebRouter = (app) => {
     router.post('/api/patient-book-appointment', patientController.postBookAppointment)
     router.post('/api/verify-book-appointment', patientController.postVerifyBookAppointment)
 
-    
+
     router.post('/api/create-new-specialty', specialtyController.createNewSpecialty)
 
 

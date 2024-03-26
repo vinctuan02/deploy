@@ -76,7 +76,12 @@ const postVerifyBookAppointment = (data) => {
     return axios.post('/api/verify-book-appointment', data)
 }
 
+const testAPI = () => {
+    return axios.get('/api/testAPI')
+}
+
 export {
+    testAPI,
     handleLoginApi,
     getAllUsers,
     createNewUserService,

@@ -8,7 +8,19 @@ import cors from 'cors'
 require('dotenv').config()
 
 let app = express()
+
+app.use((req, res, next) => {
+    console.log('Received request:', req.method, req.url);
+    next();
+});
+
 app.use(cors({ credentials: true, origin: true }))
+
+// app.use(cors({
+//     origin: '*',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization']
+// }));
 
 // app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ extended: true }))
@@ -23,6 +35,6 @@ connectDB();
 
 let port = process.env.PORT || 8080
 
-app.listen(port, () => {
+app.listen(port,'0.0.0.0', () => {
     console.log("Backend nodejs is running", port)
 })

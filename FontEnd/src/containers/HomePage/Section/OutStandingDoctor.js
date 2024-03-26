@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as action from '../../../store/actions'
 import { LANGUAGES } from '../../../utils/constant';
 import { withRouter } from 'react-router';
+import { testAPI } from '../../../services/userService';
 
 // import { FormattedMessage } from 'react-intl';
 
@@ -34,6 +35,7 @@ class OutStandingDoctor extends Component {
 
     componentDidMount() {
         this.props.loadTopDoctor()
+        testAPI()
     }
 
 
