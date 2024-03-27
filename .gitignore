@@ -1,6 +1,5 @@
 /BackEnd/node_modules
 /FrontEnd/node_modules
 /vendor
-/.idea
+/.ideaß
 .idea/
-.env

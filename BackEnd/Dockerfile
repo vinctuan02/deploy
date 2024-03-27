@@ -11,6 +11,8 @@ RUN npm install -g @babel/core @babel/cli
 
 COPY . .
 
+COPY .env .env
+
 RUN npm run build-src
 
 CMD [ "npm","run", "build" ]
